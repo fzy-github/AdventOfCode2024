@@ -4,16 +4,16 @@ use std::path::PathBuf;
 
 fn main() {
     let out_dir = env::var("OUT_DIR").unwrap();
-    println!("OUT_DIR: {}", out_dir);
+    // println!("OUT_DIR: {}", out_dir);
 
     let target_dir = PathBuf::from(out_dir).join("../../../../../target");
-    println!("Target directory: {}", target_dir.display());
+    // println!("Target directory: {}", target_dir.display());
 
     let current_dir = env::current_dir().unwrap();
-    println!("Current directory: {}", current_dir.display());
+    // println!("Current directory: {}", current_dir.display());
 
     let input_dir = current_dir.join("input");
-    println!("Input directory: {}", input_dir.display());
+    // println!("Input directory: {}", input_dir.display());
 
     fs::create_dir_all(&target_dir).unwrap();
 
@@ -33,7 +33,7 @@ fn copy_dir_recursively(src: &PathBuf, dst: &PathBuf) -> std::io::Result<()> {
         if path.is_dir() {
             copy_dir_recursively(&path, &dest_path)?;
         } else {
-            println!("Copying file: {} to {}", path.display(), dest_path.display());
+            // println!("Copying file: {} to {}", path.display(), dest_path.display());
             fs::copy(&path, &dest_path)?;
         }
     }
