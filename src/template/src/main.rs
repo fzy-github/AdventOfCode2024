@@ -18,20 +18,12 @@ fn main() {
         Err(error) => eprintln!("Error reading file {}: {}", filename, error),
     }
 
-   let sum: u32 = contents.lines()
-   .map(|line| {
-        let first_num = line.chars().find(|c| c.is_numeric());
-        let last_num = line.chars().rev().find(|c| c.is_numeric());
-        // println!("First: {:?}, Last: {:?}", first_num, last_num);
-        match (first_num, last_num) {
-            (Some(f), Some(l)) => {
-                let combined = format!("{}{}", f, l);
-                combined.parse::<u32>().unwrap_or(0)
-            },
-            _ => 0,
-        }
-    })
-    .sum();
+    let result = process_input(&contents);
 
-    println!("Sum: {}", sum);
+    println!("Result: {}", result);
+}
+
+
+fn process_input(input: &str) -> String {
+    return String::new();
 }
