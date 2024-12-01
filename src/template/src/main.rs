@@ -18,12 +18,19 @@ fn main() {
         Err(error) => eprintln!("Error reading file {}: {}", filename, error),
     }
 
-    let result = process_input(&contents);
+    let result_puzzle_1 = process_puzzle_1(&contents);
+    println!("Result for puzzle 1: {}", result_puzzle_1);
 
-    println!("Result: {}", result);
+    let result_puzzle_2 = process_puzzle_2(&contents);
+    println!("Result for puzzle 2: {}", result_puzzle_2);
 }
 
 
-fn process_input(input: &str) -> String {
+fn process_puzzle_1(input: &str) -> String {
+    return String::new();
+}
+
+
+fn process_puzzle_2(input: &str) -> String {
     return String::new();
 }
