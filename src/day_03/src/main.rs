@@ -31,21 +31,15 @@ fn process_puzzle_1(input: &str) -> String {
     let re = Regex::new(r"mul\(\d{1,3},\d{1,3}\)").unwrap();
 
     let r: i32 = input.lines().map(|line| {
-        let matches: Vec<_> = re.find_iter(line).map(|m| m.as_str())
+        re.find_iter(line).map(|m| m.as_str())
             .map(|m| {
                 m.replace("mul(", "").replace(")", "")
             })
             .map(|m| {
                 m.split(",").map(|s| s.parse::<i32>().unwrap()).collect::<Vec<i32>>()
             })
-            .collect();
-
-        let mut r = 0;
-        matches.iter().for_each(|m| {
-            r += m[0] * m[1];
-        });
-
-        return r;
+            .map(|v| v[0] * v[1])
+            .sum::<i32>()
     }).sum();
 
     return r.to_string()
