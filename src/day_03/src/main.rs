@@ -47,5 +47,29 @@ fn process_puzzle_1(input: &str) -> String {
 
 
 fn process_puzzle_2(input: &str) -> String {
-    return String::new();
+    let re = Regex::new(r"mul\(\d{1,3},\d{1,3}\)|do\(\)|don't\(\)").unwrap();
+
+    
+    let mut enabled = true;
+    let r: i32 = input.lines().map(|line| {
+        re.find_iter(line).map(|m| m.as_str())
+            .map(|m| {
+                if m == "do()" {
+                    enabled = true;
+                } else if m == "don't()" {
+                    enabled = false;
+                }
+
+                if enabled &&  m.starts_with("mul(") {
+                    let numbers = m.replace("mul(", "").replace(")", "");
+                    let v = numbers.split(",").map(|s| s.parse::<i32>().unwrap()).collect::<Vec<i32>>();
+                    return v[0] * v[1];
+                } else {
+                    return 0;
+                }
+            })
+            .sum::<i32>()
+    }).sum();
+
+    return r.to_string()
 }
